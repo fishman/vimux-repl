@@ -22,23 +22,26 @@ let g:loaded_autoload_vimuxrepl = 1
 
 let s:vimux_terminator = "\n"
 
-function! vimuxrepl#Initialize(repl)
-
+function! vimuxrepl#Initialize()
+  call vimuxrepl#{&filetype}#Initialize()
 endfunction
 
 function! vimuxrepl#sendline(command)
-  call vimuxrepl#{&filetype}#Initialize()
-  call VimuxRunCommand(a:command . s:vimux_terminator)
+  let linenumber = line(".")
+  let current = getline(linenumber)
+  call vimuxrepl#Initialize()
+  call VimuxRunCommand(l:current . s:vimux_terminator)
 endfunction
 
 function! vimuxrepl#SetTerminator(term)
   let s:vimux_terminator = a:term
 endfunction
 
-function! vimuxrepl#sendbuffer(...)
-
+function! vimuxrepl#sendbuffer()
+  echo @%
 endfunction
 
-function! vimuxrepl#sendselection(...)
-
+function! vimuxrepl#sendselection(command)
+  call vimuxrepl#Initialize()
+  call VimuxRunCommand(a:command . s:vimux_terminator)
 endfunction
