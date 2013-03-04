@@ -20,10 +20,15 @@ if exists("g:loaded_autoload_vimuxrepl") || &cp || !has('clientserver')
 endif
 let g:loaded_autoload_vimuxrepl = 1
 
-let s:vimux_terminator = "\n"
-
 function! vimuxrepl#Initialize()
+  let g:VimuxResetSequence = ""
+
+  call vimuxrepl#reset()
   call vimuxrepl#{&filetype}#Initialize()
+endfunction
+
+function! vimuxrepl#reset()
+  let s:vimux_terminator = "\n"
 endfunction
 
 function! vimuxrepl#sendline(command)
