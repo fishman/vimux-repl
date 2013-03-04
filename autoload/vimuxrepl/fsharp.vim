@@ -6,6 +6,8 @@ function! vimuxrepl#fsharp#Initialize()
 
     call VimuxRunCommand("fsharpi")
 
+    call vimuxrepl#SetTerminator(";;;")
+
     let s:Initialized = 1
   endif
 endfunction

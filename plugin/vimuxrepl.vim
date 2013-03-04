@@ -30,7 +30,7 @@ set cpo&vim
 
 
 " commands {{{
-noremap <silent> <C-c><C-r> "vy :call vimuxrepl#sendline(@v . "\n")<CR>
+noremap <silent> <C-c><C-r> "vy :call vimuxrepl#sendline(@v)<CR>
 
 " }}}
 

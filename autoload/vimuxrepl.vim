@@ -20,6 +20,8 @@ if exists("g:loaded_autoload_vimuxrepl") || &cp || !has('clientserver')
 endif
 let g:loaded_autoload_vimuxrepl = 1
 
+let s:vimux_terminator = "\n"
+
 function! vimuxrepl#Initialize(repl)
 
 endfunction
@@ -27,7 +29,12 @@ endfunction
 function! vimuxrepl#sendline(command)
   echo a:command
   call vimuxrepl#{&filetype}#Initialize()
-  call VimuxRunCommand(a:command)
+  call VimuxRunCommand(a:command . s:vimux_terminator)
+endfunction
+
+function! vimuxrepl#SetTerminator(term)
+  let s:vimux_terminator = a:term
+  echo s:vimux_terminator
 endfunction
 
 function! vimuxrepl#sendbuffer(...)
