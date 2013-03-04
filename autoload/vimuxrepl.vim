@@ -27,14 +27,12 @@ function! vimuxrepl#Initialize(repl)
 endfunction
 
 function! vimuxrepl#sendline(command)
-  echo a:command
   call vimuxrepl#{&filetype}#Initialize()
   call VimuxRunCommand(a:command . s:vimux_terminator)
 endfunction
 
 function! vimuxrepl#SetTerminator(term)
   let s:vimux_terminator = a:term
-  echo s:vimux_terminator
 endfunction
 
 function! vimuxrepl#sendbuffer(...)
